@@ -1,0 +1,47 @@
+---
+layout: default
+---
+<article class="cve-single">
+  <header class="cve-header">
+    <div class="container">
+      <div class="cve-breadcrumb">
+        <a href="/">GhostVector</a>
+        <span>›</span>
+        <a href="/cves/">CVEs</a>
+        <span>›</span>
+        <span>{{ page.cve_id | default: page.title }}</span>
+      </div>
+      {% if page.cve_id %}
+      <div class="cve-id-badge">{{ page.cve_id }}</div>
+      {% endif %}
+      <h1 class="cve-title">{{ page.title }}</h1>
+      <div class="cve-meta-row">
+        {% if page.cvss %}<span class="cvss-badge cvss-{{ page.severity | downcase }}">CVSS {{ page.cvss }} — {{ page.severity | upcase }}</span>{% endif %}
+        {% if page.vendor %}<span class="cve-meta-item">Vendor: <strong>{{ page.vendor }}</strong></span>{% endif %}
+        {% if page.product %}<span class="cve-meta-item">Product: <strong>{{ page.product }}</strong></span>{% endif %}
+        {% if page.date %}<span class="cve-meta-item">Disclosed: <time>{{ page.date | date: "%B %d, %Y" }}</time></span>{% endif %}
+        {% if page.status %}<span class="cve-status cve-status-{{ page.status }}">{{ page.status | upcase }}</span>{% endif %}
+      </div>
+      {% if page.tags %}
+      <div class="cve-tags">
+        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="cve-body">
+    <div class="container">
+      <div class="cve-content">{{ content }}</div>
+      <div class="cve-disclaimer">
+        <strong>⚠ Responsible Disclosure:</strong> This vulnerability was discovered and reported
+        through responsible disclosure. All details published here are post-patch.
+        See <a href="/disclosure/">Disclosure Policy</a>.
+      </div>
+      <div class="cve-footer-nav">
+        <a href="/cves/" class="btn-back">← All CVEs</a>
+        <a href="/disclosure/" class="btn-secondary-sm">Disclosure Policy</a>
+      </div>
+    </div>
+  </div>
+</article>

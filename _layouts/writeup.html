@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<article class="writeup-single">
+  <header class="writeup-header">
+    <div class="container">
+      <div class="cve-breadcrumb">
+        <a href="/">GhostVector</a>
+        <span>›</span>
+        <a href="/writeups/">Writeups</a>
+        <span>›</span>
+        <span>{{ page.title | truncate: 40 }}</span>
+      </div>
+      {% if page.platform %}<span class="platform-badge">{{ page.platform }}</span>{% endif %}
+      <h1 class="cve-title">{{ page.title }}</h1>
+      <div class="cve-meta-row">
+        {% if page.bounty %}<span class="bounty-badge">Bounty: {{ page.bounty }}</span>{% endif %}
+        {% if page.severity %}<span class="cvss-badge cvss-{{ page.severity | downcase }}">{{ page.severity | upcase }}</span>{% endif %}
+        {% if page.date %}<time class="cve-meta-item">{{ page.date | date: "%B %d, %Y" }}</time>{% endif %}
+      </div>
+      {% if page.tags %}
+      <div class="cve-tags">
+        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+  <div class="cve-body">
+    <div class="container">
+      <div class="cve-content">{{ content }}</div>
+      <div class="cve-disclaimer">
+        <strong>⚠ Ethical Disclosure:</strong> All bug bounty writeups are published
+        with programme permission after fixes are deployed. Never attempt to reproduce
+        on systems you don't own or have explicit authorisation for.
+      </div>
+      <div class="cve-footer-nav">
+        <a href="/writeups/" class="btn-back">← All Writeups</a>
+      </div>
+    </div>
+  </div>
+</article>

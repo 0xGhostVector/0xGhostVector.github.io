@@ -1,0 +1,185 @@
+---
+layout: default
+title: "GhostVector | Security Researcher"
+description: "Independent security researcher. CVE discovery, bug bounty, responsible disclosure, and open source security tools."
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-scan"></div>
+  <div class="hero-glow-green"></div>
+  <div class="hero-glow-red"></div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-pre"><span class="cursor">▸</span> whoami</p>
+      <h1 class="hero-title">
+        <span class="gv-zero">0x</span><span class="gv-name">Ghost<br/>Vector</span>
+      </h1>
+      <p class="hero-tagline">
+        Security Researcher
+        <span class="tag-dot">·</span>
+        CVE Hunter
+        <span class="tag-dot">·</span>
+        Bug Bounty
+      </p>
+      <p class="hero-desc">
+        Independent security researcher focused on vulnerability discovery,
+        responsible disclosure, and open source tooling.
+        Operating across US, UK, EU, and Nordic targets.
+      </p>
+      <div class="hero-cta">
+        <a href="/cves/" class="btn-primary">CVE Advisories</a>
+        <a href="/disclosure/" class="btn-secondary">Disclosure Policy</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot r"></span>
+          <span class="t-dot a"></span>
+          <span class="t-dot g"></span>
+          <span class="t-title">ghostvector@research:</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">▸</span><span class="t-cmd"> </span></div>
+          <div class="t-out highlight">handle:    GhostVector (0xGhostVector)</div>
+          <div class="t-out">focus:     vuln research · CVE · bug bounty</div>
+          <div class="t-out">targets:   US · UK · EU · Canada </div>
+          <div class="t-spacer"></div>
+          <div class="t-line"><span class="t-prompt">▸</span><span class="t-cmd"> specialties/</span></div>
+          <div class="t-out highlight">web_application_security/</div>
+          <div class="t-out highlight">api_security/</div>
+          <div class="t-out highlight">ai_model_security/</div>
+          <div class="t-out highlight">network_reconnaissance/</div>
+          <div class="t-out highlight">responsible_disclosure/</div>
+          <div class="t-spacer"></div>
+          <div class="t-line"><span class="t-prompt">▸</span><span class="t-cmd"> </span></div>
+          <div class="t-out warn">Key available at /pgp/ or on request</div>
+          <div class="t-spacer"></div>
+          <div class="t-line"><span class="t-prompt">▸</span><span class="t-cursor"> <!-- █ -->  </span></div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <span class="stat-num" id="cveCount">0</span>
+            <span class="stat-label">CVEs</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="bountyCount">0</span>
+            <span class="stat-label">Bounties</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num red" id="toolCount">0</span>
+            <span class="stat-label">Tools</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CVE ADVISORIES -->
+<section class="cve-section" id="cves">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label red">CVE Advisories</span>
+      <h2>Disclosed Vulnerabilities</h2>
+      <p>All CVEs disclosed through responsible disclosure. Published post-patch only.</p>
+    </div>
+
+    {% if site.cves.size > 0 %}
+    <table class="cve-table">
+      <thead>
+        <tr>
+          <th>CVE ID</th>
+          <th>Title</th>
+          <th>Vendor</th>
+          <th>CVSS</th>
+          <th>Severity</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cve in site.cves %}
+        <tr>
+          <td><a href="{{ cve.url | relative_url }}">{{ cve.cve_id | default: 'Pending' }}</a></td>
+          <td><a href="{{ cve.url | relative_url }}">{{ cve.title }}</a></td>
+          <td>{{ cve.vendor | default: '—' }}</td>
+          <td>{{ cve.cvss | default: '—' }}</td>
+          <td><span class="severity-badge sev-{{ cve.severity | downcase }}">{{ cve.severity | upcase }}</span></td>
+          <td><span class="cve-status-{{ cve.status }}">{{ cve.status | upcase }}</span></td>
+          <td>{{ cve.date | date: "%b %Y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="cve-empty">
+      <p> <!-- $ ls ./cves/ — advisories publishing soon --> </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- WRITEUPS -->
+<section class="writeups-section" id="writeups">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Bug Bounty Writeups</span>
+      <h2>Disclosed Findings</h2>
+      <p>Published with programme permission after fixes are live.</p>
+    </div>
+
+    {% if site.writeups.size > 0 %}
+    <div class="writeups-grid">
+      {% for writeup in site.writeups limit:4 %}
+      <div class="writeup-card">
+        {% if writeup.platform %}<span class="platform-badge">{{ writeup.platform }}</span>{% endif %}
+        <h3><a href="{{ writeup.url | relative_url }}">{{ writeup.title }}</a></h3>
+        {% if writeup.description %}<p>{{ writeup.description }}</p>{% endif %}
+        <div class="writeup-meta">
+          {% if writeup.bounty %}<span class="bounty-amount">{{ writeup.bounty }}</span>{% endif %}
+          <span class="writeup-date">{{ writeup.date | date: "%b %Y" }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="cve-empty">
+      <p> <!-- $ ls ./writeups/ — first writeups publishing soon --></p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Open Source</span>
+      <h2>Security Tools</h2>
+      <p>Tools built for research. All MIT licensed unless stated otherwise.</p>
+    </div>
+
+    {% if site.tools.size > 0 %}
+    <div class="tools-grid">
+      {% for tool in site.tools %}
+      <div class="tool-card">
+        {% if tool.language %}<p class="tool-lang">{{ tool.language }}</p>{% endif %}
+        <h3>{{ tool.title }}</h3>
+        <p>{{ tool.description }}</p>
+        <div class="tool-links">
+          {% if tool.github %}<a href="{{ tool.github }}" target="_blank" rel="noopener">GitHub ↗</a>{% endif %}
+          {% if tool.docs %}<a href="{{ tool.docs }}">Docs</a>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="cve-empty">
+      <p> <!-- $ ls ./tools/ — tools publishing soon --></p>
+    </div>
+    {% endif %}
+  </div>
+</section>

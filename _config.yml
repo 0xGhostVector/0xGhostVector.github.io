@@ -1,0 +1,71 @@
+# ============================================================
+# GHOSTVECTOR — Researcher Identity Site
+# 0xGhostVector.github.io
+# ============================================================
+
+title: "GhostVector"
+tagline: "Security Researcher · CVE Hunter · Bug Bounty"
+description: "Independent security researcher. CVE discovery, bug bounty, responsible disclosure, open source tools, and security research. Focused on US, UK, EU, and Nordic targets."
+author: "GhostVector"
+baseurl: ""
+url: "https://0xGhostVector.github.io"
+
+lang: "en"
+timezone: "Europe/London"
+permalink: /:categories/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+
+collections:
+  cves:
+    output: true
+    permalink: /cves/:name/
+  writeups:
+    output: true
+    permalink: /writeups/:name/
+  tools:
+    output: true
+    permalink: /tools/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "cves"
+    values:
+      layout: "cve"
+  - scope:
+      path: ""
+      type: "writeups"
+    values:
+      layout: "writeup"
+  - scope:
+      path: ""
+      type: "tools"
+    values:
+      layout: "tool"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby
+  - TEMPLATE*.md
