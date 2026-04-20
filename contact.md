@@ -21,7 +21,7 @@ permalink: /contact/
 
 </div>
 
-<form action="https://formspree.io/f/YOUR_GHOSTVECTOR_FORMSPREE_ID" method="POST" style="display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;">
+<form action="https://formspree.io/f/xkokzvpq" method="POST" style="display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;">
   <input type="hidden" name="_subject" value="Contact — GhostVector" />
   <div style="display:flex;flex-direction:column;gap:0.4rem;">
     <label style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-3);letter-spacing:0.05em;">Handle or Name</label>
